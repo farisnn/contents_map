@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+    <title>Nabe system</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet">
+
+
+    <style type="text/css">
+        #mynetwork {
+          width: 1800px;
+          height: 800px;
+          border: 1px solid lightgray;
+        }
+      </style>
+
+</head>
+<body>
+
+    <div id="mynetwork"></div>
+    <button id="save">データ保存</button>
+    <button id="load">データ読み込み</button>
+
+    <dialog id='add_node'>
+      <input type="text" name="node_name" id="node_name"><br>
+      <select id="type_select">
+        <option value="problem">問題点</option>
+        <option value="purpose">やりたいこと</option>
+        <option value="solution">解決方法</option>
+        <option value="verification">検証</option>
+      </select><br>
+      <button id='add_node_ok'>OK</button>
+    </dialog>
+    <script src="main.js"></script>
+</body>
