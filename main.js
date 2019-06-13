@@ -101,3 +101,49 @@ let logical_model = {
     }
     network = new vis.Network(container, data, options);
   }
+
+  //ローカル保存処理
+  let local_save_button = document.getElementById('save_local');
+  local_save_button.onclick = function(){
+
+    let save_data = {
+      nodes:data.nodes.get(),
+      edges:data.edges.get()
+    }
+    let json_str = JSON.stringify(save_data);
+    let blob = new Blob([ json_str ], { "type" : "text/plain" });
+    let link = document.createElement('a')
+    link.href = window.URL.createObjectURL(blob)
+    link.download = 'sampleText.txt'
+    link.click()   
+
+
+
+  }
+
+  //ローカル読み込み処理
+  let local_load_button = document.getElementById('load_local');
+  local_load_button.onclick = function(){
+
+    let file = document.getElementById('filebox');
+    let file_name = file.files;
+    let reader = new FileReader();
+
+    reader.onload = function(){
+      let data = reader.result;
+      let load_data = JSON.parse(data);
+    network.destroy();
+    nodes = new vis.DataSet(load_data.nodes);
+    edges = new vis.DataSet(load_data.edges);
+    data={
+      nodes:nodes,
+      edges:edges
+    }
+    network = new vis.Network(container, data, options);
+    }
+
+    reader.readAsText(file_name[0]);
+
+
+
+  }
